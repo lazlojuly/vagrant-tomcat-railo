@@ -8,14 +8,15 @@ Vagrant.configure("2") do |config|
 
 	# NAT port forwarding
 	config.vm.network :forwarded_port, guest: 22, host: 2200
-	config.vm.network :forwarded_port, guest: 80, host: 80
-	config.vm.network :forwarded_port, guest: 443, host: 443
+	config.vm.network :forwarded_port, guest: 80, host: 8080
+	config.vm.network :forwarded_port, guest: 443, host: 8443
 
 	# synced/shared folders
-	config.vm.synced_folder "L:/CP2", "/var/www/CP2"
-	config.vm.synced_folder "C:/_webroot/clientBranding/branches/dev/CPM", "/var/www/branding"
+	config.vm.synced_folder "~/Coding/Concrete/concrete-platform/CP2", "/var/www/CP2", :mount_options => ["dmode=777,fmode=666"]
+	config.vm.synced_folder "~/Coding/Concrete/client-branding/CPM", "/var/www/branding"
 	#config.vm.synced_folder "Z:/", "/var/client-filestore"
-	config.vm.synced_folder "C:/_webroot/password-lgk/trunk", "/usr/share/tomcat7/certs"
+	config.vm.synced_folder "~/Coding/Concrete/password-lgk", "/usr/share/tomcat7/certs"
+
 
 	# settings for vm
 	config.vm.provider :virtualbox do |vb|
