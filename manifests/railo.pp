@@ -56,6 +56,16 @@ file { 'railo.war':
   require => Exec['railo-download'],
 }
 
+
+# add sqlite JDBC driver jar
+file { '/var/lib/tomcat7/webapps/railo/WEB-INF/lib/sqlite-jdbc-3.7.15-M1.jar':
+  owner   => 'tomcat7',
+  group   => 'tomcat7',
+  source  => '/vagrant/files/sqlite-jdbc-3.7.15-M1.jar',
+  require => File['railo.war'],
+  notify  => Service['tomcat7'],
+}
+
 # prod tomcat
 exec { 'curl':
   name    => '/usr/bin/curl localhost:8080',
