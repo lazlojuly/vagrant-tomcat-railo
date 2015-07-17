@@ -11,3 +11,10 @@ package { 'sqlite3':
   require => Exec['apt-update'],
 }
 
+# copy debugger sqlite database
+file { '//var/www/CP2/tools/debuglog/debgger.db':
+  owner   => 'tomcat7',
+  group   => 'tomcat7',
+  source  => '/vagrant/files/debugger.db',
+  require => Package['sqlite3'],
+}
