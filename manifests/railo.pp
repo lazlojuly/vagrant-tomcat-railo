@@ -58,11 +58,11 @@ file { 'railo.war':
 
 
 # add sqlite JDBC driver jar
-file { '/var/lib/tomcat7/webapps/railo/WEB-INF/lib/sqlite-jdbc-3.7.15-M1.jar':
+file { '/usr/share/tomcat7/lib/sqlite-jdbc-3.7.15-M1.jar':
   owner   => 'tomcat7',
   group   => 'tomcat7',
   source  => '/vagrant/files/sqlite-jdbc-3.7.15-M1.jar',
-  require => File['railo.war'],
+  require => Package['tomcat7'],
   notify  => Service['tomcat7'],
 }
 
