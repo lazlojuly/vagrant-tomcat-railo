@@ -12,7 +12,7 @@ package { 'sqlite3':
 }
 
 # copy debugger sqlite database
-file { '//var/www/CP2/tools/debuglog/debgger.db':
+file { '//var/www/CP2/tools/debuglog/debugger.db':
   owner   => 'tomcat7',
   group   => 'tomcat7',
   source  => '/vagrant/files/debugger.db',
