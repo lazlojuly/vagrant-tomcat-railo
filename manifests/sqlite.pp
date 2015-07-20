@@ -11,8 +11,15 @@ package { 'sqlite3':
   require => Exec['apt-update'],
 }
 
+# create sqlite db directory
+file { '/var/sqlite3':
+	owner  => 'tomcat7',
+  	group  => 'tomcat7',
+	ensure => "directory",
+}
+
 # copy debugger sqlite database
-file { '//var/www/CP2/tools/debuglog/debugger.db':
+file { '/var/sqlite3/debugger.db':
   owner   => 'tomcat7',
   group   => 'tomcat7',
   source  => '/vagrant/files/debugger.db',
